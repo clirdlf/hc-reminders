@@ -41,14 +41,14 @@ end
 # Extract data from the Excel cells
 def find_data(i)
   {
-    id: @workbook.row(i)[@headers['Grant Contract No.']],
-    last_name: @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Name Last']],
-    first_name: @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Name First']],
-    email: @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Email']],
+    id:           @workbook.row(i)[@headers['Grant Contract No.']],
+    last_name:    @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Name Last']],
+    first_name:   @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Name First']],
+    email:        @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Email']],
     organization: @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Organization']],
-    date_end: @workbook.row(i)[@headers['Grants_Contracts LOG::Date End']],
-    active: @workbook.row(i)[@headers['Grants_Contracts LOG::Disposition']],
-    final_due: @workbook.row(i)[@headers['Grants_Contracts LOG::Final Narr Due']]
+    date_end:     @workbook.row(i)[@headers['Grants_Contracts LOG::Date End']],
+    active:       @workbook.row(i)[@headers['Grants_Contracts LOG::Disposition']],
+    final_due:    @workbook.row(i)[@headers['Grants_Contracts LOG::Final Narr Due']]
   }
 end
 
