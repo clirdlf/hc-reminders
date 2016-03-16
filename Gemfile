@@ -12,6 +12,7 @@ gem "mailcatcher" # for testing sending emails
 gem "sqlite3"
 gem "sequel"
 
+gem 'activesupport'
 
 # Excel
 gem 'roo'
