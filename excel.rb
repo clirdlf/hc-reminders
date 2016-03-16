@@ -46,6 +46,7 @@ def find_data(i)
     first_name:   @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Name First']],
     email:        @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Email']],
     organization: @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Organization']],
+    project:      @workbook.row(i)[@headers['Grants_Contracts LOG::Description']],
     date_end:     @workbook.row(i)[@headers['Grants_Contracts LOG::Date End']],
     active:       @workbook.row(i)[@headers['Grants_Contracts LOG::Disposition']],
     final_due:    @workbook.row(i)[@headers['Grants_Contracts LOG::Final Narr Due']]
@@ -75,12 +76,83 @@ def send_email(row)
     subject 'Hidden Collections Report Reminder'
 
     text_part do
-      body "This is the plain text part\n\nDear #{row[:first_name]},\n\nThis is just a reminder that the report for your Hidden Collection grant is due #{row[:date_end]}"
+      body "Dear #{row[:first_name]},
+
+Report Due: #{row[:final_due]}
+Grant Ref. No.: #{row[:id]}
+Project: #{row[:project]}
+
+Please accept this message as a friendly reminder that a report is due shortly for the Hidden Collections grant referenced above.
+
+In narrative and financial reports, CLIR expects grantees to describe and evaluate the activities achieved during the grant period and to explain how the grant funds were used for those activities. Reports must be submitted via the program's online report form in accordance with our guidelines, which can be found on our Web site:
+
+http://www.clir.org/hiddencollections/recipients/recipients.html#report
+
+To assist you with your financial report, you may find a mock-up of an exemplary financial report through this link (PDF):
+
+http://www.clir.org/hiddencollections/recipients/hidden-collections-financial-report-mockup
+
+If you have any questions about any aspect of the grant, please contact Program Officer Nicole Ferraiolo at nferraiolo@clir.org. We look forward to reading your report.
+
+Best,
+Adam
+
+--
+Adam Leader-Smith
+Program Associate
+Council on Library and Information Resources
+1707 L St. NW, Suite 650
+Washington, D.C., 20036
+(202) 939-4759
+http://www.clir.org"
     end
 
     html_part do
       content_type 'text/html; charset=UTF-8'
-      body "<h1>This is the HTML part</h1><p>Dear #{row[:first_name]},</p><p>This is just a reminder that the report for your Hidden Collections grant is due #{row[:date_end]}</p>"
+      body "<p>Dear #{row[:first_name]},</p>
+
+      <p>
+        Report Due: <strong>#{row[:final_due]}</strong>
+      <br>
+        Grant Ref. No.: #{row[:id]}
+      <br>
+        Project: #{row[:project]}
+      </p>
+
+      <p>
+        Please accept this message as a friendly reminder that a report is due shortly for the Hidden Collections grant referenced above.
+      </p>
+      <p>
+        In narrative and financial reports, CLIR expects grantees to describe and evaluate the activities achieved during the grant period and to explain how the grant funds were used for those activities. Reports must be submitted via the program's online report
+        form in accordance with our guidelines, which can be found on our Web site:
+      </p>
+      <p>
+        <a href='http://www.clir.org/hiddencollections/recipients/recipients.html#report'>http://www.clir.org/hiddencollections/recipients/recipients.html#report</a>
+      </p>
+      <p>
+        To assist you with your financial report, you may find a mock-up of an exemplary financial report through this link (PDF):
+      </p>
+      <p>
+        <a href='http://www.clir.org/hiddencollections/recipients/hidden-collections-financial-report-mockup'>http://www.clir.org/hiddencollections/recipients/hidden-collections-financial-report-mockup</a>
+      </p>
+      <p>
+        If you have any questions about any aspect of the grant, please contact Program Officer Nicole Ferraiolo at <a href='mailto:nferraiolo@clir.org'>nferraiolo@clir.org</a>. We look forward to reading your report.
+      </p>
+      <p>
+        Best,
+        <br /> Adam
+      </p>
+      <p>
+        --
+        <br> Adam Leader-Smith
+        <br> Program Associate
+        <br> Council on Library and Information Resources
+        <br> 1707 L St. NW, Suite 650
+        <br> Washington, D.C., 20036
+        <br> (202) 939-4759
+        <br> http://www.clir.org
+      </p>
+"
     end
   end
 end
