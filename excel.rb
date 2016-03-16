@@ -147,12 +147,12 @@ def send_email(row)
     subject 'Hidden Collections Report Reminder'
 
     text_part do
-      body 'This is the plain text part'
+      body "This is the plain text part\n\nDear #{row[:first_name]},\n\nThis is just a reminder that the report for your Hidden Collection grant is due #{row[:date_end]}"
     end
 
     html_part do
       content_type 'text/html; charset=UTF-8'
-      body '<h1>This is the HTML part'
+      body "<h1>This is the HTML part</h1><p>Dear #{row[:first_name]},</p><p>This is just a reminder that the report for your Hidden Collections grant is due #{row[:date_end]}</p>"
     end
   end
 end
