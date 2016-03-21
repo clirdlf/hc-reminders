@@ -39,7 +39,7 @@ end
 
 ##
 # Extract data from the Excel cells
-def find_data(i)
+def extract_fields(i)
   {
     id:           @workbook.row(i)[@headers['Grant Contract No.']],
     last_name:    @workbook.row(i)[@headers['Grants_Contracts LOG::Contact Name Last']],
@@ -163,7 +163,7 @@ end
 
 def parse_file
   ((@workbook.first_row + 1)..@workbook.last_row).each do |row|
-    row_data = find_data(row)
+    row_data = extract_fields(row)
 
     next unless row_data[:active] == 'Active'
     diff = check_date(row_data[:date_end])
