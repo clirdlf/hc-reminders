@@ -5,3 +5,4 @@ gem "dotenv"        # passwords and such
 gem "mail"          # email
 gem "mailcatcher"   # for testing sending emails
 gem 'roo'           # Excel
+gem 'thor'          # command line interface
